@@ -16,7 +16,7 @@ $user="Muaz";
 ?>
 
 <div id="welcome"><h1>Welcome, <?php echo $user ?>!</h1>
-<button type="submit" >Log Out</button>
+<button type="submit" value="logout" >Log Out</button>
 </div>
 
 

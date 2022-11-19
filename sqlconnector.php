@@ -14,9 +14,8 @@ if(!$sql_writer){
     echo "failed";
 }
 $sql_writer->bind_param("ssss",$name,$email,$phone,$comment);
-$sql_writer->execute();
 
-if($sql_writer)
+if($sql_writer->execute())
 include "success.php";
 
 $sql_writer->close();
