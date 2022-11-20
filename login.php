@@ -1,3 +1,11 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "feedback_db");
+if($conn->connect_error) {
+    die("connection failed");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +22,7 @@
 <div id="login_prompt">
     <form action="" method="post">
         <div> <p>Username</p> <input type="text" name="username" required="required"></div>
-        <div> <p>Password</p> <input type="text" name="password" required="required"></div>
+        <div> <p>Password</p> <input type="password" name="password" required="required"></div>
         <div><button type="submit" id="submit_button" name="login">Login</button></div>
     </form>
 </div>
@@ -26,10 +34,7 @@
 $username = $_POST["username"] ?? null;
 $password = $_POST["password"] ?? null;
 
-$conn = new mysqli("localhost", "root", "", "feedback_db");
-if($conn->connect_error) {
-    die("connection failed");
-}
+
 $sql_username = "";
 $sql_password = "";
 $sql_writer = $conn->prepare("SELECT * FROM admin WHERE username='Muaz'");
@@ -43,9 +48,14 @@ $sql_writer->fetch();
 $clicked = $_POST["login"] ?? null;
 
 if(isset($clicked)) {
-    if ($username == $sql_username && $password == $sql_password) echo "Login successful";
+    if ($username == $sql_username && $password == $sql_password) {
+        $_SESSION["username"] = $sql_username;
+        $_SESSION["password"] = $sql_password;
+        header("Location: adminpage.php");
+    }
     else echo "<h1 style='text-align: center; color: white'>Login Failed! Try Again</h1>";
 }
+
 
 $sql_writer->close();
 $conn->close();

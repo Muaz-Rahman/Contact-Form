@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(!isset($_SESSION["username"])) header("Location: redirect_login.php");
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,12 +16,11 @@
 
 <body>
 
-<?php
-$user="Muaz";
-?>
 
-<div id="welcome"><h1>Welcome, <?php echo $user ?>!</h1>
-<button type="submit" value="logout" >Log Out</button>
+<div id="welcome"><h1>Welcome, <?php echo $_SESSION["username"] ?>!</h1>
+    <form method="get">
+        <button name="logout">Log Out</button>
+    </form>
 </div>
 
 
@@ -25,3 +29,9 @@ $user="Muaz";
 
 </html>
 
+<?php
+if(isset($_GET["logout"])) {
+    session_unset();
+    session_destroy();
+    header("Location: login.php");
+}

@@ -53,11 +53,9 @@
 </body>
 </html>
 
-<?php
 
-?>
-
-<!--1. Create a responsive contact us form. DONE-->
-<!--2. Send the contact us form data to database. DATABASE TABLE DONE. NEED PHP AND SQL CONNECTION-->
-<!--3. Create an admin login panel. DONE-->
-<!--4. After successful login show the details of the contact form serially. -->
+<!-- Right now what I need to do are
+ 1 I need to create session for login purposes and making the logged in state persist.
+ 2 I need to create a view model that allows me to pull data from sql and show it in the webpage in a formatted way.
+ which means I need to show the feedback data in the adminpage view
+  -->
